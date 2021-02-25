@@ -31,5 +31,5 @@ r360.getGLStyle = function (stylename, apikey) {
         throw new Error('apikey required to access Route360 basemaps');
     }
 
-    return 'https://maps.route360.net/styles/' + r360.basemapsLookup[stylename] + '.json?key=' + apikey
+    return 'https://maps.targomo.com/styles/' + r360.basemapsLookup[stylename] + '.json?key=' + apikey
 };

@@ -47,7 +47,7 @@ r360.config = {
         { routeType : 1000       , color : "blue",      haloColor : "white" },
         { routeType : 109        , color : "#006F35",   haloColor : "white" },
         { routeType : 100        , color : "red",       haloColor : "white" },
-        // new york      
+        // new york
         { routeType : 1          , color : "red",       haloColor : "red"},
         { routeType : 2          , color : "blue",      haloColor : "blue"},
         { routeType : 3          , color : "yellow",    haloColor : "yellow"},
@@ -59,7 +59,7 @@ r360.config = {
     ],
 
     photonPlaceAutoCompleteOptions : {
-        serviceUrl : "https://service.route360.net/geocode/",
+        serviceUrl : "https://service.targomo.com/geocode/",
         position : 'topleft',
         reset : false,
         reverse : false,

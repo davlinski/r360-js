@@ -1,5 +1,5 @@
 /*
- Route360° JavaScript API v0.5.3 (a575c9e), a JS library for leaflet.js and google maps API. http://route360.net
+ Route360° JavaScript API v0.5.3 (a575c9e), a JS library for leaflet.js and google maps API. http://targomo.com
  (c) 2017 Henning Hollburg, Daniel Gerber and Jan Silbersiepe, (c) 2017 Motion Intelligence GmbH
 */
 (function (window, document, undefined) {
@@ -186,7 +186,7 @@ r360.config = {
         { routeType : 1000       , color : "blue",      haloColor : "white" },
         { routeType : 109        , color : "#006F35",   haloColor : "white" },
         { routeType : 100        , color : "red",       haloColor : "white" },
-        // new york      
+        // new york
         { routeType : 1          , color : "red",       haloColor : "red"},
         { routeType : 2          , color : "blue",      haloColor : "blue"},
         { routeType : 3          , color : "yellow",    haloColor : "yellow"},
@@ -198,7 +198,7 @@ r360.config = {
     ],
 
     photonPlaceAutoCompleteOptions : {
-        serviceUrl : "https://service.route360.net/geocode/",
+        serviceUrl : "https://service.targomo.com/geocode/",
         position : 'topleft',
         reset : false,
         reverse : false,
@@ -1271,13 +1271,13 @@ r360.Util = {
         return (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds();
     },
 
-    /* 
+    /*
      * This method returns the current time in seconds, rounded down to the nearest minute,
      * at the time this method is executed. This means that the current hours and minutes of the
-     * current time are converted to seconds and added up, e.g.: 12:11 pm: 
+     * current time are converted to seconds and added up, e.g.: 12:11 pm:
      *
      *      -> (12 * 3600) + (11 * 60) = 43860
-     * 
+     *
      * @method getHoursAndMinutesInSeconds
      *
      * @returns {Number} The current time in seconds
@@ -1649,7 +1649,7 @@ r360.Util = {
 r360.extend = r360.Util.extend;
 
 r360.DomUtil = {
-    
+
     setPosition: function (el, point) { // (HTMLElement, Point[, Boolean])
 
         if (r360.Browser.any3d) {
@@ -2331,7 +2331,7 @@ r360.PolygonService = {
         if ( !r360.isUndefined(travelOptions.getSrid()) )                  cfg.polygon.srid               = travelOptions.getSrid();
         if ( !r360.isUndefined(travelOptions.getSimplifyMeter()) )         cfg.polygon.simplify           = travelOptions.getSimplifyMeter();
         if ( !r360.isUndefined(travelOptions.getBuffer()) )                cfg.polygon.buffer             = travelOptions.getBuffer();
-        if ( !r360.isUndefined(travelOptions.getQuadrantSegments()) )      cfg.polygon.quadrantSegments   = travelOptions.getQuadrantSegments(); 
+        if ( !r360.isUndefined(travelOptions.getQuadrantSegments()) )      cfg.polygon.quadrantSegments   = travelOptions.getQuadrantSegments();
 
         // add each source point and it's travel configuration to the cfg
         travelOptions.getSources().forEach(function(source){
@@ -3331,7 +3331,7 @@ r360.LineString = function(coordinateArray) {
 /*
  *
  */
-r360.RouteSegment = function(segment){      
+r360.RouteSegment = function(segment){
 
     var that             = this;
     that.points          = [];
@@ -3343,10 +3343,10 @@ r360.RouteSegment = function(segment){
     * Call it distance instead
     */
 
-    that.distance        = segment.length / 1000;    
-    that.warning         = segment.warning;    
+    that.distance        = segment.length / 1000;
+    that.warning         = segment.warning;
     that.elevationGain   = segment.elevationGain;
-    that.errorMessage;   
+    that.errorMessage;
     that.transitSegment  = false;
     that.startname      = segment.startname;
     that.endname        = segment.endname;
@@ -3358,7 +3358,7 @@ r360.RouteSegment = function(segment){
 
     // in case we have a transit route, we set a color depending
     //  on the route type (bus, subway, tram etc.)
-    // and we set information which are only available 
+    // and we set information which are only available
     // for transit segments like depature station and route short sign
     if ( segment.isTransit ) {
 
@@ -3446,7 +3446,7 @@ r360.RouteSegment = function(segment){
     }
 };
 
-r360.routeSegment = function (segment) { 
+r360.routeSegment = function (segment) {
     return new r360.RouteSegment(segment);
 };
 
@@ -3666,7 +3666,7 @@ r360.getGLStyle = function (stylename, apikey) {
         throw new Error('apikey required to access Route360 basemaps');
     }
 
-    return 'https://maps.route360.net/styles/' + r360.basemapsLookup[stylename] + '.json?key=' + apikey
+    return 'https://maps.targomo.com/styles/' + r360.basemapsLookup[stylename] + '.json?key=' + apikey
 };
 
 if ( typeof L === 'object' ) {
@@ -4417,7 +4417,7 @@ if (typeof L === 'object') {
             minZoom: 2,
             maxZoom: 18,
             style: 'bright',
-            attribution: '<a href=\"https://route360.net/\" target=\"_blank\">&copy; Route360&deg;</a> <a href=\"http://openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap contributors</a>',
+            attribution: '<a href=\"https://targomo.com/\" target=\"_blank\">&copy; Route360&deg;</a> <a href=\"http://openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap contributors</a>',
             apikey: null,
         },
 
@@ -4430,7 +4430,7 @@ if (typeof L === 'object') {
 
             options = L.setOptions(this, options);
 
-            var tileUrl = 'https://maps.route360.net/styles/{styleName}/rendered/{z}/{x}/{y}.png?key={apikey}';
+            var tileUrl = 'https://maps.targomo.com/styles/{styleName}/rendered/{z}/{x}/{y}.png?key={apikey}';
 
             L.TileLayer.prototype.initialize.call(this, tileUrl, options);
         }
@@ -4466,9 +4466,9 @@ if (typeof L === 'object') {
 r360.LeafletUtil = {
 
     /*
-     * Convenients method to generate a Leaflet marker with the 
+     * Convenients method to generate a Leaflet marker with the
      * specified marker color. For available colors look at 'dist/images'
-     * 
+     *
      * @method getMarker
      * @param {Object} [latlon] The coordinate
      * @param {Number} [latlon.lat] The latitude of the coordinate.
@@ -4484,11 +4484,11 @@ r360.LeafletUtil = {
             iconSize     : [25, 41], // size of the icon
             iconUrl      : options.iconPath + 'marker-icon' + color + '.png',
             iconAnchor   : [12, 41], // point of the icon which will correspond to marker's location
-            
+
             shadowSize   : [41, 41], // size of the shadow
             shadowUrl    : options.iconPath + 'marker-shadow.png',
             shadowAnchor : [41 / 3, 41], // point of the shadow which will correspond to marker's location
-            
+
             popupAnchor  : [0, -35]  // point from which the popup should open relative to the iconAnchor
         });
 
@@ -4500,7 +4500,7 @@ r360.LeafletUtil = {
         if ( typeof drawingTime == 'undefined' ) drawingTime = 0;
         if ( typeof fadingType  == 'undefined')  fadingType  = 'travelTime';
 
-        fadePathSegment(0);        
+        fadePathSegment(0);
 
         function fadePathSegment(z){
 
@@ -4512,21 +4512,21 @@ r360.LeafletUtil = {
 
             // transfer don't have a linestring, just a point
             if ( segment.getType() != "TRANSFER" ) {
-                fader(segment, timeToDraw, options, z); 
+                fader(segment, timeToDraw, options, z);
             }
             else {
-                
-                if ( typeof options === 'undefined' || options.paintTransfer || (typeof options !== 'undefined' && !r360.has(options, 'paintTransfer') )) 
-                    addTransferSegment(segment, options); 
+
+                if ( typeof options === 'undefined' || options.paintTransfer || (typeof options !== 'undefined' && !r360.has(options, 'paintTransfer') ))
+                    addTransferSegment(segment, options);
 
                 if(++z < route.routeSegments.length)
                     fadePathSegment(z);
-            }          
+            }
         }
 
         function addTransferSegment(segment, options){
 
-            addCircularMarker(segment.points[0], segment, options);     
+            addCircularMarker(segment.points[0], segment, options);
 
             // if inter station transfer -> involves two stops -> we need a second circle
             if( segment.points.length > 1 && segment.points[0].lat !=  segment.points[1].lat && segment.points[0].lng !=  segment.points[1].lng )
@@ -4534,16 +4534,16 @@ r360.LeafletUtil = {
         }
 
         function addCircularMarker(latLng, segment, options) {
-            var marker = L.circleMarker(latLng, { 
-                    color:          !r360.isUndefined(options) && r360.has(options, 'transferColor')      ? options.transferColor       : segment.getColor(), 
-                    fillColor:      !r360.isUndefined(options) && r360.has(options, 'transferHaloColor')  ? options.transferHaloColor   : typeof segment.getHaloColor() !== 'undefined' ? segment.getHaloColor() : '#9D9D9D', 
-                    fillOpacity:    !r360.isUndefined(options) && r360.has(options, 'transferFillOpacity')? options.transferFillOpacity : 1, 
-                    opacity:        !r360.isUndefined(options) && r360.has(options, 'transferOpacity')    ? options.transferOpacity     : 1, 
-                    stroke:         !r360.isUndefined(options) && r360.has(options, 'transferStroke')     ? options.transferStroke      : true, 
-                    weight:         !r360.isUndefined(options) && r360.has(options, 'transferWeight')     ? options.transferWeight      : 4, 
-                    radius:         !r360.isUndefined(options) && r360.has(options, 'transferRadius')     ? options.transferRadius      : 8 
-                });         
-    
+            var marker = L.circleMarker(latLng, {
+                    color:          !r360.isUndefined(options) && r360.has(options, 'transferColor')      ? options.transferColor       : segment.getColor(),
+                    fillColor:      !r360.isUndefined(options) && r360.has(options, 'transferHaloColor')  ? options.transferHaloColor   : typeof segment.getHaloColor() !== 'undefined' ? segment.getHaloColor() : '#9D9D9D',
+                    fillOpacity:    !r360.isUndefined(options) && r360.has(options, 'transferFillOpacity')? options.transferFillOpacity : 1,
+                    opacity:        !r360.isUndefined(options) && r360.has(options, 'transferOpacity')    ? options.transferOpacity     : 1,
+                    stroke:         !r360.isUndefined(options) && r360.has(options, 'transferStroke')     ? options.transferStroke      : true,
+                    weight:         !r360.isUndefined(options) && r360.has(options, 'transferWeight')     ? options.transferWeight      : 4,
+                    radius:         !r360.isUndefined(options) && r360.has(options, 'transferRadius')     ? options.transferRadius      : 8
+                });
+
             var popup = !r360.isUndefined(options) && r360.has(options, 'popup') ? options.popup : "INSERT_TEXT";
 
             if ( typeof segment !== 'undefined') {
@@ -4563,7 +4563,7 @@ r360.LeafletUtil = {
             marker.addTo(layer);
             marker.bringToFront();
         }
-        
+
 
         function fader(segment, millis, options, z){
 
@@ -4573,7 +4573,7 @@ r360.LeafletUtil = {
             polylineOptions.weight      = !r360.isUndefined(options) && r360.has(options, 'weight' )  ? options.weight  : 5;
 
             if ( segment.getType() != "TRANSIT" && (segment.getType() == "WALK") )  {
-                
+
                 polylineOptions.color     = !r360.isUndefined(options) && r360.has(options, 'walkColor' )     ? options.walkColor     : '#006F35';
                 polylineOptions.weight    = !r360.isUndefined(options) && r360.has(options, 'walkWeight' )    ? options.walkWeight : 7;
                 polylineOptions.dashArray = !r360.isUndefined(options) && r360.has(options, 'walkDashArray' ) ? options.walkDashArray : "1, 10";
@@ -4600,27 +4600,27 @@ r360.LeafletUtil = {
         /*
         function is recalling itself every 25ms
         if you want the line to be drawn in one second you need to add a chopped line in (roughly) 40 pieces
-        When line is drawn fadePathSegment is called in order to draw the next segment. 
+        When line is drawn fadePathSegment is called in order to draw the next segment.
         */
 
         function fadeLine(polyLine, haloLine, choppedLine, i, z){
 
             var latlngs = polyLine.getLatLngs();
 
-            for ( var j = 0 ; j < choppedLine[i].length ; j++ ) 
+            for ( var j = 0 ; j < choppedLine[i].length ; j++ )
                 latlngs.push(choppedLine[i][j])
-            
-            
+
+
             if ( latlngs.length != 0 ) {
                 haloLine.setLatLngs(latlngs);
                 polyLine.setLatLngs(latlngs);
-            } 
+            }
 
             if ( ++i < choppedLine.length ) {
-                setTimeout(function(){ 
-                    fadeLine(polyLine, haloLine, choppedLine, i, z); 
+                setTimeout(function(){
+                    fadeLine(polyLine, haloLine, choppedLine, i, z);
                 }, 15);
-            }else{               
+            }else{
                 if(++z < route.routeSegments.length)
                    fadePathSegment(z);
             }
@@ -4633,23 +4633,23 @@ r360.LeafletUtil = {
         function chopLineString(latlngs, pieces){
 
             var length          = 0;
-            var steps           = 1 / pieces;        
+            var steps           = 1 / pieces;
             var percentSoFar    = 0;
             var segmentDistance;
             var segmentPercent;
             var newLatLngs  = new Array();
-           
+
             for(var i = 1; i < latlngs.length; i++){
                 length += latlngs[i-1].distanceTo(latlngs[i]);
             }
 
-            var part        = new Array(); 
+            var part        = new Array();
 
             for(var i = 0; i < latlngs.length -1; i++){
 
-                
+
                 part.push(latlngs[i]);
-               
+
                 segmentDistance  = latlngs[i].distanceTo(latlngs[i + 1]);
                 segmentPercent   = segmentDistance / length;
                 percentSoFar    += segmentPercent;
@@ -4662,7 +4662,7 @@ r360.LeafletUtil = {
 
                         newLatLngs.push(part);
                         part        = new Array();
-                    } 
+                    }
                 }
             }
 
@@ -4694,7 +4694,7 @@ r360.LeafletUtil = {
 
             var latlng = tempmap.unproject(L.point(newPoint.x, newPoint.y));
 
-            return latlng;          
+            return latlng;
         };
     }
 };
@@ -4968,7 +4968,7 @@ r360.GoogleMapsUtil = {
     googleLatlngToPoint : function(map, latlng, z){
         var normalizedPoint = map.getProjection().fromLatLngToPoint(latlng); // returns x,y normalized to 0~255
         var scale = Math.pow(2, z);
-        return new google.maps.Point(normalizedPoint.x * scale, normalizedPoint.y * scale); 
+        return new google.maps.Point(normalizedPoint.x * scale, normalizedPoint.y * scale);
     },
 
     /**
@@ -4981,7 +4981,7 @@ r360.GoogleMapsUtil = {
         var scale = Math.pow(2, z);
         var normalizedPoint = new google.maps.Point(point.x / scale, point.y / scale);
         var latlng = map.getProjection().fromPointToLatLng(normalizedPoint);
-        return latlng; 
+        return latlng;
     }
 };
 

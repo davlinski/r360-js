@@ -9,7 +9,7 @@ if (typeof L === 'object') {
             minZoom: 2,
             maxZoom: 18,
             style: 'bright',
-            attribution: '<a href=\"https://route360.net/\" target=\"_blank\">&copy; Route360&deg;</a> <a href=\"http://openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap contributors</a>',
+            attribution: '<a href=\"https://targomo.com/\" target=\"_blank\">&copy; Route360&deg;</a> <a href=\"http://openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap contributors</a>',
             apikey: null,
         },
 
@@ -22,7 +22,7 @@ if (typeof L === 'object') {
 
             options = L.setOptions(this, options);
 
-            var tileUrl = 'https://maps.route360.net/styles/{styleName}/rendered/{z}/{x}/{y}.png?key={apikey}';
+            var tileUrl = 'https://maps.targomo.com/styles/{styleName}/rendered/{z}/{x}/{y}.png?key={apikey}';
 
             L.TileLayer.prototype.initialize.call(this, tileUrl, options);
         }
